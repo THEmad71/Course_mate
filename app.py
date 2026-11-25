@@ -2,6 +2,21 @@
 import streamlit as st
 from graph_engine import ask_graph
 
+import os
+import streamlit as st
+
+# Load Streamlit Cloud secrets into environment
+for key in [
+    "GEMINI_API_KEY",
+    "QDRANT_URL",
+    "QDRANT_API_KEY"
+]:
+    if key in st.secrets:
+        os.environ[key] = str(st.secrets[key])
+
+# Import after loading secrets
+from graph_engine import ask_graph
+
 
 # 1. Page Configuration
 st.set_page_config(
